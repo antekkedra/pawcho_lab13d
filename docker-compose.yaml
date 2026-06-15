@@ -1,0 +1,71 @@
+services:
+  nginx:
+    image: nginx:1.30.2-alpine
+    container_name: lempNginx
+    ports:
+      - "4001:80"
+    volumes:
+      - ./php:/var/www/html:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+    - php
+    networks:
+    - frontend
+    - backend
+
+  mysql:
+    image: mysql:8.0
+    container_name: lempMysql
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_USER_FILE: /run/secrets/db_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    secrets:
+      - db_root_password
+      - db_user
+      - db_password
+    networks:
+      - backend
+
+  php:
+    build: ./php
+    container_name: lempPhp
+    volumes:
+      - ./php:/var/www/html
+    secrets:
+      - db_user
+      - db_password
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: lempPhpmyadmin
+    ports:
+      - "6001:80"
+    environment:
+      PMA_HOST: mysql
+    secrets:
+      - db_user
+      - db_password
+    networks:
+      - backend
+      - frontend
+  
+networks:
+  frontend:
+  backend:
+
+volumes:
+  mysql_data:
+
+secrets:
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+  db_user:
+    file: ./secrets/db_user.txt
+  db_password:
+    file: ./secrets/db_password.txt
