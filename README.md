@@ -95,6 +95,8 @@ połączenia z bazą danych MySQL.
 
 Potwierdza to poprawną integrację Nginx, PHP-FPM, MySQL.
 
+<img width="1567" height="986" alt="image" src="https://github.com/user-attachments/assets/553e6e27-8e6b-42ef-a5d0-74e3ec927c65" />
+
 ### 4.2. phpMyAdmin i inicjalizacja bazy danych
 
 phpMyAdmin dostępny jest pod adresem:
@@ -105,4 +107,12 @@ http://localhost:6001
 - Serwer bazy danych jest ustawiony automatycznie (`mysql`)
 - Możliwe jest utworzenie testowej bazy danych oraz tabel
 
+<img width="1567" height="986" alt="image" src="https://github.com/user-attachments/assets/b55d5f89-a525-4a3c-8097-9ed934d0e191" />
+
+<img width="1567" height="986" alt="image" src="https://github.com/user-attachments/assets/915518fa-9a50-41fe-b133-125ef8b769cc" />
+
+<img width="1567" height="986" alt="image" src="https://github.com/user-attachments/assets/0cb6bb82-3194-432a-90fd-803a2aba7179" />
+
+
+  
 ---
